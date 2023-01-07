@@ -1,5 +1,6 @@
 package code;
 
+import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -13,6 +14,7 @@ public class Registration extends javax.swing.JFrame implements Runnable {
 
     ArrayList<Data> route = new ArrayList<>();
     DefaultTableModel modelo = new DefaultTableModel();
+    Destinations dest = new Destinations();
 
     public Registration() {
         initComponents();
@@ -168,7 +170,7 @@ public class Registration extends javax.swing.JFrame implements Runnable {
 
     private void JB_AgregarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_AgregarRutaActionPerformed
         Data dt = new Data();
-        if (JCB_Destino.getSelectedIndex() == 0 || JCB_Salida.getSelectedIndex() == 0 || JDC_Fecha.equals(null) || JCB_Hora.getSelectedIndex() == 0) {
+        if (JCB_Destino.getSelectedIndex() == 0 || JCB_Salida.getSelectedIndex() == 0 || JDC_Fecha == null || JCB_Hora.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Ingrese los datos solicitados para continuar.");
         } else {
             dt.setSalida((String) JCB_Salida.getSelectedItem());
@@ -179,14 +181,19 @@ public class Registration extends javax.swing.JFrame implements Runnable {
             dt.setHora((String) JCB_Hora.getSelectedItem());
             route.add(dt);
             clearFields();
-            limpiarTabla();
-            cargar();
+            cleanTable();
+            upload();
         }
     }//GEN-LAST:event_JB_AgregarRutaActionPerformed
 
     private void JB_MostrarRutasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_MostrarRutasActionPerformed
-        Thread thread = new Thread(this);
-        thread.start();
+        if (JT_Rutas.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "No hay rutas disponibles en este momento.");
+        } else {
+            dest.setVisible(true);
+            Thread thread = new Thread(this);
+            thread.start();
+        }
     }//GEN-LAST:event_JB_MostrarRutasActionPerformed
 
     /**
@@ -241,27 +248,27 @@ public class Registration extends javax.swing.JFrame implements Runnable {
     // End of variables declaration//GEN-END:variables
 
     @Override
+    @SuppressWarnings("InfiniteRecursion")
     public void run() {
-        Destinations dest = new Destinations();
-        if (JT_Rutas.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "No hay rutas disponibles en este momento.");
-        } else {
-            dest.setVisible(true);
-            for (int i = 0; i < route.size(); i++) {
-                try {
-                    String salida = route.get(i).getSalida();
-                    String destino = route.get(i).getDestino();
-                    String fecha = route.get(i).getFecha();
-                    String hora = route.get(i).getHora();
-                    String ruta = "Salida: " + salida + " - Destino: " + destino + " - Fecha: " + fecha + " - Hora: " + hora;
-                    dest.JL_Ruta.setText(ruta);
-                    System.out.println(ruta);
-                    Thread.sleep(3000);
-                } catch (InterruptedException ex) {
-                    System.out.println("Error: " + ex.toString());
-                }
+        System.out.printf("+------------+------------+------------+--------+%n");
+        System.out.printf("| %-10s | %-10s | %-10s | %-6s |%n", "SALIDA", "DESTINO", "FECHA", "HORA");
+        System.out.printf("+------------+------------+------------+--------+%n");
+        for (int i = 0; i < route.size(); i++) {
+            try {
+                String salida = route.get(i).getSalida();
+                String destino = route.get(i).getDestino();
+                String fecha = route.get(i).getFecha();
+                String hora = route.get(i).getHora();
+                String ruta = MessageFormat.format("Salida: {0} - Destino: {1} - Fecha/Hora: {2} {3}", salida, destino, fecha, hora);
+                dest.JL_Ruta.setText(ruta);
+                System.out.printf("| %-10s | %-10s | %-10s | %-6s |%n", salida, destino, fecha, hora);
+                System.out.printf("+------------+------------+------------+--------+%n");
+                Thread.sleep(3000);
+            } catch (InterruptedException ex) {
+                System.out.println("Error: " + ex.toString());
             }
         }
+        run();
     }
 
     private void clearFields() {
@@ -271,7 +278,7 @@ public class Registration extends javax.swing.JFrame implements Runnable {
         JDC_Fecha.setCalendar(null);
     }
 
-    public void cargar() {
+    public void upload() {
         Object[] ob = new Object[3];
         for (int i = 0; i < route.size(); i++) {
             ob[0] = route.get(i).getSalida();
@@ -282,7 +289,7 @@ public class Registration extends javax.swing.JFrame implements Runnable {
         JT_Rutas.setModel(modelo);
     }
 
-    public void limpiarTabla() {
+    public void cleanTable() {
         for (int i = 0; i < modelo.getRowCount(); i++) {
             modelo.removeRow(i);
             i -= 1;

@@ -43,7 +43,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="JL_Ruta" pref="638" max="32767" attributes="0"/>
+                  <Component id="JL_Ruta" pref="488" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -62,7 +62,7 @@
         <Component class="javax.swing.JLabel" name="JL_Ruta">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="18" style="3"/>
+              <Font name="Segoe UI" size="14" style="3"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Ruta:"/>

@@ -8,7 +8,7 @@ public class Destinations extends javax.swing.JFrame {
 
     public Destinations() {
         initComponents();
-        this.setTitle("Rutas");
+        this.setTitle("Routes: Portoviejo - Manabí - Ecuador");
         this.setResizable(false);
         this.setLocationRelativeTo(null);
     }
@@ -22,7 +22,7 @@ public class Destinations extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        JL_Ruta.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        JL_Ruta.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         JL_Ruta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JL_Ruta.setText("Ruta:");
         JL_Ruta.setToolTipText("");
@@ -33,7 +33,7 @@ public class Destinations extends javax.swing.JFrame {
             JP_BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JP_BackgroundLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(JL_Ruta, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
+                .addComponent(JL_Ruta, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
                 .addContainerGap())
         );
         JP_BackgroundLayout.setVerticalGroup(
