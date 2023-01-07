@@ -3,6 +3,7 @@ package code;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -24,6 +25,7 @@ public class Registration extends javax.swing.JFrame implements Runnable {
         this.modelo.addColumn("Destino");
         this.modelo.addColumn("Fecha");
         this.JT_Rutas.setModel(modelo);
+        JDC_Fecha.setMinSelectableDate(new Date());
     }
 
     @SuppressWarnings("unchecked")
