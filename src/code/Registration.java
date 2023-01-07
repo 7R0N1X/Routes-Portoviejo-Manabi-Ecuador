@@ -14,7 +14,17 @@ import javax.swing.table.DefaultTableModel;
 public class Registration extends javax.swing.JFrame implements Runnable {
 
     ArrayList<Data> route = new ArrayList<>();
-    DefaultTableModel modelo = new DefaultTableModel();
+    DefaultTableModel modelo = new DefaultTableModel(){
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            if (column==3) {
+                return true;
+            }else{
+                return false;
+            }
+        }
+        
+    };
     Destinations dest = new Destinations();
 
     public Registration() {
