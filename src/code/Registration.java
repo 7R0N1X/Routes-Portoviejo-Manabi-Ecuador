@@ -28,6 +28,7 @@ public class Registration extends javax.swing.JFrame implements Runnable {
         initComponents();
         this.setTitle("Routes: Portoviejo - Manabí - Ecuador");
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
         this.modelo.addColumn("Salida");
         this.modelo.addColumn("Destino");
         this.modelo.addColumn("Fecha");
