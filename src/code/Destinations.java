@@ -1,5 +1,8 @@
 package code;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+
 /**
  *
  * @author 7R0N1X
@@ -12,6 +15,12 @@ public class Destinations extends javax.swing.JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
     }
+    
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("img/globe-64.png"));
+        return retValue;
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -21,6 +30,7 @@ public class Destinations extends javax.swing.JFrame {
         JL_Ruta = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconImage(getIconImage());
 
         JL_Ruta.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         JL_Ruta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

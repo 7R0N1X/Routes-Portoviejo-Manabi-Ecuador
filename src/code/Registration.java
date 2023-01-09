@@ -1,5 +1,7 @@
 package code;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -33,6 +35,12 @@ public class Registration extends javax.swing.JFrame implements Runnable {
         JDC_Fecha.setMinSelectableDate(new Date());
     }
 
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("img/globe-64.png"));
+        return retValue;
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -52,6 +60,7 @@ public class Registration extends javax.swing.JFrame implements Runnable {
         JCB_Hora = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
 
         JL_Salida.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         JL_Salida.setText("Salida:");
